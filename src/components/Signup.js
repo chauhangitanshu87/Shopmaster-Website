@@ -1,4 +1,5 @@
 import React,{useState}from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     
@@ -6,8 +7,23 @@ const Signup = () => {
     const [email,setEmail]= useState("");
     const [password,setPassword]= useState("");
 
-    const collectData= ()=>{
-        console.warn(name,email,password)
+    const navigate=useNavigate();
+
+    const collectData=  async ()=>{
+      let result = await fetch("http://localhost:5000/register",{
+        method:'post',
+        body: JSON.stringify({name,email,password}),
+        headers:{
+            'Content-Type':'application/json'
+        }
+    });
+    result=await  result.json();
+    console.warn(result);
+    if(result){
+      navigate('/')
+    }
+    
+       
     }
 
 

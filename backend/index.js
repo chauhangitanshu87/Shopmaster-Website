@@ -1,18 +1,23 @@
 const express = require('express')
 const app =express();
-const mongoose = require('mongoose')
+const port = 5000
+require("./db/config")
+const User = require('./db/User');
 
-const port = 3000
+const cors = require('cors');
 
-const connectDB= async ()=>{
-    mongoose.connect('mongodb+srv://gitanshuchauhan:gitanshu@cluster0.q0pht.mongodb.net/e-comm?retryWrites=true&w=majority&appName=Cluster0/');
-    const productSchema=new mongoose.Schema({});
-    const product = mongoose.model('product',productSchema)
-    const data =await product.find();
-    console.warn(data);
-}
 
-connectDB();
+
+app.use(express.json())
+app.use(cors());
+
+app.post('/register', async (req,resp)=>{
+    let user = new User(req.body)
+    let result = await user.save();
+    resp.send(result);
+})
+
+
 
 app.listen(port, ()=>{
     console.log(`shopmaster backend listening at http:localhost:${port}`)
