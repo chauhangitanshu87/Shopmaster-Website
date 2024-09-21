@@ -45,11 +45,26 @@ const Nav = () => {
           </ul>
 
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/login">Login</Link>
-            </li>
-            <li className="nav-item">{ auth ? <Link className="nav-link" onClick={logout} to="/signup">Logout</Link> : 
-            <Link className="nav-link" to="/signup">Sign Up</Link>}
+            </li> */}
+            
+            <li className="nav-item"> {auth ? (
+                <li>
+                  <Link className="nav-link" onClick={logout} to="/signup">
+                    Logout
+                  </Link>
+                </li>
+              ) : (
+                <div className="d-flex">
+                  <li className="nav-item mr-3">
+                    <Link className="nav-link" to="/signup">Sign Up</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
+                </div>
+              )}
               
             </li>
            
