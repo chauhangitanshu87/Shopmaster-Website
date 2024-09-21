@@ -41,6 +41,32 @@ app.post("/add-product", async (req, resp) => {
     resp.send(result);
 })
 
+app.get("/products", async (req,resp)=>{
+    const products = await Product.find();
+    if (products.length>0){
+        resp.send(products)
+    }
+    else{
+        resp.send({"result":"No Product found"})
+    }
+});
+
+app.delete("/product/:id", async (req,resp)=>{
+    let result = await Product.deleteOne({_id:req.params.id});
+    
+     resp.send(result)
+   
+
+})
+
+app.get("/product/:id",async (req, resp)=>{
+    let result  = await Product.findOne({_id:req.params.id})
+    if(result){
+        resp.send(result)
+    }else{
+        resp.send({"result":"No Record Found."})
+    }
+})
 
 
 app.listen(port, ()=>{
