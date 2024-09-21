@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Nav = () => {
+
+  const auth = localStorage.getItem('user');
+  const navigate = useNavigate();
+
+  const logout = ()=>{
+    localStorage.clear();
+    navigate('/signup')
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -40,12 +48,11 @@ const Nav = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/login">Login</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/signup">Signup</Link>
+            <li className="nav-item">{ auth ? <Link className="nav-link" onClick={logout} to="/signup">Logout</Link> : 
+            <Link className="nav-link" to="/signup">Sign Up</Link>}
+              
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/logout">Logout</Link>
-            </li>
+           
           </ul>
 
        
