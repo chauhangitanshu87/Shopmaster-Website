@@ -26,6 +26,15 @@ main {
   padding: 5px;
 } */
 
+
+.search-product-box {
+  width: 400px;
+  margin: 20px;
+  height: 38px;
+  padding-left: 30px;
+  border: solid 1px skyblue;
+}
+
 .product-list ul{
   margin: 0;
 }
