@@ -39,7 +39,23 @@ app.post("/add-product", async (req, resp) => {
     let product = new Product(req.body);
     let result = await product.save();
     resp.send(result);
-})
+}) ;
+
+
+
+// app.post("/add-product", async (req, resp) => {
+//     const { userId, ...productData } = req.body; // Destructure userId from the request body
+
+//     // Add the userId to the product object before saving
+//     let product = new Product({
+//         ...productData,
+//         userId: userId  // Assign userId to the product
+//     });
+
+//     let result = await product.save();
+//     resp.send(result);
+// });
+
 
 app.get("/products", async (req,resp)=>{
     const products = await Product.find();
